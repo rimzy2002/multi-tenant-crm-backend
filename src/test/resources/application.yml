@@ -8,10 +8,11 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
     open-in-view: false
   flyway:
-    enabled: false
+    enabled: true
+    locations: classpath:db/migration
   security:
     user:
       name: test
@@ -25,4 +26,4 @@ app:
 logging:
   level:
     root: INFO
-    com.crm.backend: WARN
+    com.crm.backend: INFO
