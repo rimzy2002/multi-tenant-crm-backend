@@ -1,5 +1,6 @@
 package com.crm.backend.auth;
 
+import com.crm.backend.customer.CustomerRepository;
 import com.crm.backend.security.JwtService;
 import com.crm.backend.tenant.Tenant;
 import com.crm.backend.tenant.TenantRepository;
@@ -7,6 +8,7 @@ import com.crm.backend.user.Role;
 import com.crm.backend.user.User;
 import com.crm.backend.user.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,6 +45,9 @@ class AuthIntegrationTest {
     private UserRepository userRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -50,6 +55,14 @@ class AuthIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        customerRepository.deleteAll();
+        userRepository.deleteAll();
+        tenantRepository.deleteAll();
+    }
+
+    @AfterEach
+    void tearDown() {
+        customerRepository.deleteAll();
         userRepository.deleteAll();
         tenantRepository.deleteAll();
     }
